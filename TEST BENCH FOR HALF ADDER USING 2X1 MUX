@@ -1,0 +1,22 @@
+//test bench
+module tb_halfadder_using_mux;
+
+reg a,b;
+wire sum,carry;
+
+halfadder_using_mux A1(a,b,sum,carry);
+
+initial begin
+  //TO Open EPWave after run in EDA playground
+         $dumpfile("dump.vcd");
+         $dumpvars(0, tb_halfadder_using_mux);
+  
+    $monitor("a=%b b=%b sum=%b carry=%b",a,b,sum,carry);
+
+    a=0; b=0;
+    #10;a=0; b=1;
+    #10;a=1; b=0;
+    #10;a=1; b=1;
+    #10;$finish;
+end
+endmodule
