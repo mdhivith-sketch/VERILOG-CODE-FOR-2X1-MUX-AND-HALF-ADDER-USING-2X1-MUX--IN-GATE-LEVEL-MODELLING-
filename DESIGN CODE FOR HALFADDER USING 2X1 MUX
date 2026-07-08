@@ -1,0 +1,32 @@
+//design code for 2x1 mux
+module mux2x1_gate(i0,i1,s,y);
+
+input i0,i1,s;
+output y;
+
+wire s_bar,w1,w2;
+
+not(s_bar,s);
+and(w1,i0,s_bar);
+and(w2,i1,s);
+or(y,w1,w2);
+
+endmodule
+
+//design code for halfadder using 2x1 mux 
+module halfadder_using_mux(a,b,sum,carry);
+
+input a,b;
+output sum,carry;
+
+wire b_bar;
+
+not(b_bar,b);
+
+// Sum
+mux2x1_gate M1(b,b_bar,a,sum);
+
+// Carry
+mux2x1_gate M2(1'b0,b,a,carry);
+
+endmodule
